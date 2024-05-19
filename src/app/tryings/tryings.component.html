@@ -1,0 +1,54 @@
+<!-- <div formArrayName="employeeInPositions">
+    <mat-expansion-panel *ngFor="let position of positionsFormArray.controls; let i = index">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Position {{ i + 1 }} 
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div [formGroupName]="i" class="position-container">
+            <div class="position-form">
+                <mat-form-field appearance="fill" class="position-field">
+                    <mat-label>Position</mat-label>
+                    <mat-select formControlName="positionId" placeholder="Select Position"
+                        class="position-select">
+                        <mat-option *ngFor="let pos of positions" [value]="pos.id"
+                            [disabled]="isPositionDisabled(pos.id, i)">{{ pos.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="positionsFormArray.controls[i].get('positionId')?.hasError('required')">Position
+                        is
+                        required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="position-field">
+                    <mat-label>Entry Date</mat-label>
+                    <input matInput [matDatepicker]="entryDatePicker" formControlName="startPosition"
+                        placeholder="Enter Start Position Date" class="position-input">
+                    <mat-datepicker-toggle matSuffix [for]="entryDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #entryDatePicker></mat-datepicker>
+                    <mat-error
+                        *ngIf="positionsFormArray.controls[i].get('startPosition')?.hasError('required')">Starting 
+                       Position Date is required</mat-error>
+                    <mat-error
+                        *ngIf="positionsFormArray.controls[i].get('startPosition')?.hasError('entryDateInvalid')">Entry
+                        Date must be greater than or equal to Employment Start Date
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-slide-toggle formControlName="administrative" color="primary"
+                    class="position-toggle">Administrative</mat-slide-toggle>
+
+                <button mat-icon-button color="warn" (click)="removePositionControl(i)"
+                    *ngIf="positionsFormArray.length>1" class="position-delete-button">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</div>
+
+<button mat-icon-button color="primary" (click)="addPositionControl()" class="position-add-button" matTooltip="Add position">
+    <mat-icon>add</mat-icon>
+</button> -->

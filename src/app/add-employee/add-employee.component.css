@@ -1,0 +1,27 @@
+.example-form-field {
+    width: 200px;
+    color: rgb(214, 132, 85);
+  }
+  .matInput {
+    color: rgb(214, 132, 85);
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+mat-select{width:30%;}
+mat-card {
+  max-width:100%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.example-form-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}

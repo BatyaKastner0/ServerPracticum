@@ -1,0 +1,21 @@
+.example-form-field {
+    width: 200px;
+    color: rgb(214, 132, 85);
+  }
+  .matInput {
+    color: rgb(214, 132, 85);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-wrapper {
+  width: 500px;
+  padding: 20px;
+}
+
+mat-card {
+  box-shadow: 0 4px 8px 0 rgba(15, 45, 218, 0.2)
+}

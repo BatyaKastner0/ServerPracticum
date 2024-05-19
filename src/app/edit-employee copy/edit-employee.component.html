@@ -1,0 +1,86 @@
+<mat-card-content>
+  <mat-card>
+<form [formGroup]="employeeForm" (ngSubmit)="saveChanges()">  
+    
+<mat-form-field class="example-form-field">
+  <mat-label>תעודת זהות</mat-label>
+  <input matInput type="text" formControlName="tz" value="data.row.tz" required pattern="[0-9]{9}">
+  @if (employeeForm.controls['tz'].value) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="employeeForm.controls['tz'].reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  <mat-error *ngIf="employeeForm.get('tz')?.hasError('required')">tz is required</mat-error>
+  <mat-error *ngIf="employeeForm.get('tz').invalid && employeeForm.get('tz').dirty">The tz is invalid </mat-error>
+  <mat-error *ngIf="employeeForm.get('tz')?.hasError('pattern')">The tz must be 9 digits</mat-error>
+</mat-form-field>
+<mat-form-field class="example-form-field">
+  <mat-label>שם פרטי</mat-label>
+  <input matInput type="text" formControlName="firstName" required [value]="data.row.firstName">
+  @if (employeeForm.controls['firstName'].value) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="employeeForm.controls['firstName'].reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">firstName is required</mat-error>
+
+</mat-form-field>
+<mat-form-field class="example-form-field">
+  <mat-label>שם משפחה</mat-label>
+  <input matInput type="text" formControlName="lastName" class="custom-input" required [value]="data.row.lastName" >
+  @if (employeeForm.controls['lastName'].value) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="employeeForm.controls['lastName'].reset()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+  <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">lastName is required</mat-error>
+
+</mat-form-field>
+<mat-form-field class="example-form-field">
+  <mat-label>תאריך לידה</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="dateBorn" [value]="data.row.dateBorn" >
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="employeeForm.get('dateBorn')?.hasError('required')">dateBorn is required</mat-error>
+  <mat-error *ngIf="employeeForm.hasError('dates')">Date from should be less than or equal to date to</mat-error>
+</mat-form-field>
+<input type="date" formControlName="startDate">
+    <div>
+<label>gender</label>
+<mat-radio-group formControlName="isMale">
+  <mat-radio-button value="true">male</mat-radio-button>
+  <mat-radio-button value="false">female</mat-radio-button>
+</mat-radio-group>
+</div>
+<!-- <div> -->
+
+<mat-error *ngIf="employeeForm.get('isMale')?.hasError('required')">choosing gender required</mat-error>
+
+<div formArrayName="roles">
+  <div *ngFor="let role of employeeForm.get('roles')['controls']; let i = index">
+    <div [formGroupName]="i">
+      <!-- <select formControlName="roleId">
+        <option *ngFor="let option of roleNames" [value]="option.id">
+          {{ option.name }}
+        </option>
+      </select> -->
+      <mat-select formControlName="roleId" placeholder="roleName" (selectionChange)="updateRolesOptions($event)">
+        <mat-option *ngFor="let option of roleNames" [value]="option.id" [disabled]="option.disabled">
+          {{ option.name }}
+        </mat-option>
+      </mat-select>
+      <label for="isManagerial">Is it a managerial role?</label>
+      <input type="checkbox" formControlName="isManagerial">
+      <label for="startDate">Start Date of Role:</label>
+      <input type="date" formControlName="startDate">
+
+    </div>
+    <button mat-raised-button color="primary"  type="button" (click)="removeRole(i)">הסר תפקיד</button>
+
+</div>
+<button mat-raised-button color="primary" type="button" (click)="addRole()">הוסף תפקיד</button>
+</div>
+<button type="submit">שמור שינויים</button>
+</form> 
+</mat-card>
+</mat-card-content>
